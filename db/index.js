@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
+require("dotenv/config")
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/express-basic-auth";
+const MONGO_URI = process.env.MONGODB_URI || `mongodb+srv://${process.env.MG_USER}:${process.env.MG_PWD}@cluster0.sexab.mongodb.net/RegistrationExercise?retryWrites=true&w=majority` ;
 
 mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-  })
+  .connect(MONGO_URI)
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
